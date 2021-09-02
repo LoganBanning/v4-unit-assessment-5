@@ -39,7 +39,7 @@ const login = async (req, res) => {
     username: user.username
   };
     return res.send(req.session.user);
-    }
+}
 
 const logout = async (req, res) => {
   req.session.destroy();
@@ -50,7 +50,7 @@ const getUser = async (req, res) => {
   if(req.session.user) {
     return res.send(user);
   } else (
-    res.sendStatus(404)
+    res.sendStatus(401)
   );
 }
 
