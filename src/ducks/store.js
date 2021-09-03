@@ -1,4 +1,4 @@
 import { createStore } from 'redux';
-import { reducer } from './reducer';
+import reducer, { updateUser, logout } from './reducer';
 
 export default createStore(reducer);

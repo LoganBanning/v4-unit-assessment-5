@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import axios from 'axios';
 import homeLogo from './../../assets/home_logo.png';
 import newLogo from './../../assets/new_logo.png';
@@ -22,12 +22,14 @@ class Nav extends Component {
 
   getUser() {
     axios.get('/api/auth/me')
-    .then(res => 'replace this string with something useful')
+    .then(res => this.props.updateUser(res.data))
+    .catch(e => console.log(e));
   }
   
   logout() {
     axios.post('/api/auth/logout')
-      .then(_ => 'replace this string with something else')
+      .then(() => this.props.updateUser({}))
+      .catch(e => console.log(e));
   }
   
   render() {
@@ -35,8 +37,10 @@ class Nav extends Component {
       return this.props.location.pathname !== '/' &&
         <div className='nav'>
           <div className='nav-profile-container'>
-            <div className='nav-profile-pic'></div>
-            <p>placeholder username</p>
+            <div className='nav-profile-pic'>
+              {/* {style={backgroundImage: URL(`${REDUX_STATE_PIC}`)}}*/}
+              </div>
+            <p>{this.props.username}</p>
           </div>
           <div className='nav-links'>
             <Link to='/dash'>
@@ -55,7 +59,7 @@ class Nav extends Component {
 
 const mapStateToProps = () => {
   return {
-
+    // nav: state.nav,
   }
 };
 
