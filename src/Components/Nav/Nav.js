@@ -57,9 +57,9 @@ class Nav extends Component {
   }
 }
 
-const mapStateToProps = () => {
+const mapStateToProps = (state) => {
   return {
-    // nav: state.nav,
+    nav: state.nav,
   }
 };
 
